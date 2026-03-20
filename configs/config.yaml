@@ -1,0 +1,36 @@
+run_name: reverse_string_baseline
+seed: 42
+device: auto
+
+data:
+  min_str_len: 3
+  max_str_len: 10
+  train_samples: 50000
+  val_samples: 5000
+  test_samples: 5000
+  batch_size: 64
+  num_workers: 0
+
+model:
+  d_model: 128
+  nhead: 4
+  num_layers: 3
+  dim_feedforward: 256
+  dropout: 0.1
+  max_seq_len: 50
+
+optim:
+  lr: 0.001
+
+trainer:
+  epochs: 60
+  patience: 10
+
+eval:
+  sample_strings: ["abcdef", "hello", "xyz", "python", "ignite", "gsoc"]
+  ood_lengths: [12, 15, 18, 20]
+
+output:
+  root_dir: outputs
+  save_checkpoints: true
+  n_saved: 1
